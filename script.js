@@ -1,108 +1,136 @@
 $(document).ready(function() {
-    // Form handling
-    const handleFormValidation = () => {
-        $('.form-control, .form-select').on('input', function() {
-            $(this).removeClass('is-invalid');
-            $(this).toggleClass('is-valid', $(this).val().trim() !== '');
-        });
-    };
+    let currentStep = 1;
+    const totalSteps = 3;
+    const form = $('#registrationForm');
 
-    // Form submission
-    $('#registrationForm').on('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = {
-            name: $('#name').val().trim(),
-            email: $('#email').val().trim(),
-            password: $('#password').val().trim(),
-            subscription: $('#subscription').val(),
-            terms: $('#terms').prop('checked')
-        };
-        
-        // Validation
-        const validations = [
-            { field: 'name', condition: formData.name.length < 3, message: 'Nama minimal 3 huruf ya bestie! 😅' },
-            { field: 'email', condition: !formData.email.includes('@') || !formData.email.includes('.'), message: 'Email-nya belum bener nih! 📧' },
-            { field: 'password', condition: formData.password.length < 6, message: 'Password minimal 6 karakter ya! 🔐' },
-            { field: 'subscription', condition: !formData.subscription, message: 'Pilih paket dulu dong! 🎮' },
-            { field: 'terms', condition: !formData.terms, message: 'Jangan lupa centang syarat & ketentuan ya! 📝' }
-        ];
+    // Validate current step
+    function validateStep() {
+        const currentSection = $(`.form-section[data-section="${currentStep}"]`);
+        let isValid = true;
 
+        // Clear previous errors
         $('.is-invalid').removeClass('is-invalid');
+        $('.invalid-feedback').remove();
 
-        for (const validation of validations) {
-            if (validation.condition) {
-                $(`#${validation.field}`).addClass('is-invalid');
-                alert(validation.message);
-                return;
+        // Validate required fields
+        currentSection.find('[required]').each(function() {
+            if (!$(this).val()) {
+                $(this).addClass('is-invalid');
+                isValid = false;
+            }
+        });
+
+        // Special validation for email
+        if (currentStep === 1) {
+            const email = $('#email').val();
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                $('#email').addClass('is-invalid');
+                isValid = false;
             }
         }
 
-        // Format WhatsApp message
-        const message = `*Pendaftaran Play Pass Baru!*%0A
---------------------------------%0A
-*Nama:* ${formData.name}%0A
-*Email:* ${formData.email}%0A
-*Paket:* ${formData.subscription}%0A
---------------------------------`;
-        
-        window.open(`https://wa.me/6285643025633?text=${encodeURIComponent(message)}`, '_blank');
-        
-        this.reset();
-        $('.is-invalid').removeClass('is-invalid');
-    });
-
-    // Scroll handling
-    const handleScroll = () => {
-        const navbar = document.querySelector('.navbar');
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    };
-
-    // Smooth scroll
-    const initSmoothScroll = () => {
-        $('a[href^="#"]').on('click', function(e) {
-            e.preventDefault();
-            const target = $(this.getAttribute('href'));
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top - 70
-                }, 800, 'easeInOutQuad');
-            }
-        });
-    };
-
-    // Mobile detection
-    const isMobile = window.innerWidth <= 768;
-
-    // Feature animations (desktop only)
-    if (!isMobile) {
-        document.querySelectorAll('.feature-item').forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                const rect = item.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / item.clientWidth - 0.5) * 20;
-                const y = ((e.clientY - rect.top) / item.clientHeight - 0.5) * 20;
-                item.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            });
-        });
+        return isValid;
     }
 
-    // Initialize
-    handleFormValidation();
-    window.addEventListener('scroll', handleScroll);
-    initSmoothScroll();
-
-    // Cleanup
-    window.addEventListener('beforeunload', () => {
-        window.removeEventListener('scroll', handleScroll);
+    // Handle next button
+    $('.btn-next').click(function() {
+        if (validateStep()) {
+            currentStep++;
+            updateFormDisplay();
+        }
     });
-});
 
-// Add easing function if not included in jQuery
-jQuery.easing.easeInOutQuad = function (x, t, b, c, d) {
-    if ((t/=d/2) < 1) return c/2*t*t + b;
-    return -c/2 * ((--t)*(t-2) - 1) + b;
-};
+    // Handle previous button
+    $('.btn-prev').click(function() {
+        currentStep--;
+        updateFormDisplay();
+    });
+
+    // Handle subscription selection
+    $('.subscription-card').click(function() {
+        $('.subscription-card').removeClass('selected');
+        $(this).addClass('selected');
+        $('#subscription').val($(this).data('value'));
+    });
+
+    // Update form display
+    function updateFormDisplay() {
+        // Update sections
+        $('.form-section').removeClass('active').hide();
+        $(`.form-section[data-section="${currentStep}"]`).addClass('active').show();
+
+        // Update steps
+        $('.step').removeClass('active');
+        for (let i = 1; i <= currentStep; i++) {
+            $(`.step[data-step="${i}"]`).addClass('active');
+        }
+
+        // Update buttons
+        $('.btn-prev').toggle(currentStep > 1);
+        $('.btn-next').toggle(currentStep < totalSteps);
+        $('.btn-submit').toggle(currentStep === totalSteps);
+    }
+
+    // Handle form submission
+    form.on('submit', function(e) {
+        e.preventDefault();
+        if (validateStep()) {
+            // Mengambil nilai dari form
+            const name = $('#name').val();
+            const email = $('#email').val();
+            const subscription = $('#subscription').val();
+            
+            // Membuat pesan untuk WhatsApp
+            let message = `Halo, saya ingin mendaftar Play Pass!%0A%0A`;
+            message += `Nama: ${name}%0A`;
+            message += `Email: ${email}%0A`;
+            message += `Paket: ${subscription === 'monthly' ? 'Bulanan' : 'Tahunan'}%0A`;
+            
+            // Nomor WhatsApp tujuan
+            const phoneNumber = '6285876825407';
+            
+            // Membuat URL WhatsApp
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Tampilkan loading
+            Swal.fire({
+                title: 'Memproses...',
+                text: 'Mohon tunggu sebentar',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            // Simulasi delay untuk UX yang lebih baik
+            setTimeout(() => {
+                // Redirect ke WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Reset form
+                form[0].reset();
+                currentStep = 1;
+                updateFormDisplay();
+                
+                // Tampilkan pesan sukses
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Formulir telah dikirim. Anda akan diarahkan ke WhatsApp.',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#4285f4',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+            }, 1500);
+        }
+    });
+
+    // Initialize form
+    updateFormDisplay();
+});
