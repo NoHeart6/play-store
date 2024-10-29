@@ -87,7 +87,7 @@ $(document).ready(function() {
             message += `Paket: ${subscription === 'monthly' ? 'Bulanan' : 'Tahunan'}%0A`;
             
             // Nomor WhatsApp tujuan
-            const phoneNumber = '6285876825407';
+            const phoneNumber = '6285643025633';
             
             // Membuat URL WhatsApp
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
