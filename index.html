@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Play Pass - Subscription Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="asset/logo.jpeg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top rounded-circle">
+                Play Pass
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Harga</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#register">Daftar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <div class="hero-particles"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <img src="asset/logo.jpeg" alt="Play Pass" class="hero-logo">
+                    <span class="badge-text">Google Play Pass</span>
+                </div>
+                <h1 class="hero-title">Unlock Unlimited Games & Apps</h1>
+                <p class="hero-subtitle">Nikmati ratusan game dan aplikasi premium tanpa iklan</p>
+                <div class="hero-cta">
+                    <a href="#register" class="btn btn-primary btn-lg">Mulai Sekarang</a>
+                    <a href="#pricing" class="btn btn-outline-light btn-lg">Lihat Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Table -->
+    <section id="pricing" class="py-5">
+        <div class="container">
+            <div class="pricing-header text-center">
+                <h2 class="display-4 mb-3">Pilihan Paket Langganan</h2>
+                <p class="lead text-muted mb-5">Pilih paket yang sesuai dengan kebutuhanmu</p>
+            </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Paket</th>
+                            <th>Harga</th>
+                            <th>Yang Didapet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Bulanan</strong>
+                                <div class="badge bg-primary rounded-pill ms-2">Basic</div>
+                            </td>
+                            <td>
+                                <div class="price">
+                                    <span class="amount">Rp 75.000</span>
+                                    <span class="period">/bulan</span>
+                                </div>
+                            </td>
+                            <td>
+                                <ul class="benefits-list">
+                                    <li>Full akses semua fitur</li>
+                                    <li>Tanpa iklan</li>
+                                    <li>Update berkala</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="position-relative">
+                            <td>
+                                <strong>Tahunan</strong>
+                                <div class="badge bg-warning text-dark rounded-pill ms-2">Best Value</div>
+                                <span class="popular-badge">Hemat 40%</span>
+                            </td>
+                            <td>
+                                <div class="price">
+                                    <span class="amount">Rp 450.000</span>
+                                    <span class="period">/tahun</span>
+                                </div>
+                            </td>
+                            <td>
+                                <ul class="benefits-list">
+                                    <li>Semua fitur Bulanan</li>
+                                    <li>Bonus 2 bulan</li>
+                                    <li>Prioritas support</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Tambahkan section fitur di bawah table -->
+            <div class="features-list-section mt-5">
+                <h3 class="text-center mb-4">Fitur Unggulan Play Pass</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="features-list">
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Akses ke 1000+ aplikasi & game premium</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Bebas iklan & in-app purchase</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Update konten berkala</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Bisa dibagi dengan keluarga (Family sharing)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="features-list">
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Offline mode tersedia</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Dukungan cross-device</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Konten aman untuk anak</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Prioritas customer support</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="register" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Gas Daftar!</h2>
+            <form id="registrationForm" class="registration-form">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                </div>
+                <div class="mb-3">
+                    <select class="form-select" id="subscription" required>
+                        <option value="">Pilih Paket</option>
+                        <option value="monthly">Bulanan (Rp 75.000/bulan)</option>
+                        <option value="annual">Tahunan (Rp 450.000/tahun)</option>
+                    </select>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    <label class="form-check-label" for="terms">Setuju sama syarat & ketentuan</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Gas Daftar!</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">See Play Pass in Action</h2>
+            <div class="ratio ratio-16x9">
+                <iframe 
+                    src="asset/Google Play Pass Trailer - A Pass to Hundreds of Games and Apps.mp4" 
+                    title="Google Play Pass Demo"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Info Section -->
+    <div class="owner-section">
+        <div class="container">
+            <div class="owner-card">
+                <div class="owner-profile">
+                    <div class="owner-image">
+                        <img src="asset/profil.jpeg" alt="Wisnu Hidayat">
+                    </div>
+                    <div class="owner-info">
+                        <h2>Wisnu Hidayat</h2>
+                        <div class="badges">
+                            <span class="badge student">Mahasiswa UNISNU</span>
+                            <span class="badge programmer">Programmer</span>
+                            <span class="badge developer">Developer</span>
+                        </div>
+                        <p class="owner-description">
+                            Seorang pengembang software dan mahasiswa yang berdedikasi dalam menciptakan solusi teknologi inovatif. 
+                            Dengan passion di bidang pemrograman, saya terus mengembangkan keterampilan dan berkontribusi dalam 
+                            dunia teknologi digital.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - Official Google Play Pass -->
+    <footer class="matrix-section">
+        <div class="container text-center position-relative">
+            <h2 class="mb-2 text-white">Official Google Play Pass</h2>
+            <p class="mb-3 text-white">Visit the official Google Play Pass page to learn more and start your subscription.</p>
+            <a href="https://play.google.com/store/games?device=windows" 
+               target="_blank" 
+               class="btn btn-primary btn-lg official-link">
+                <img src="https://assets.onecompiler.app/42hja26js/42w2dx2cd/1000526439.jpg" 
+                     alt="Play Pass" 
+                     width="28" 
+                     height="28" 
+                     class="me-2 rounded-circle">
+                Visit Google Play Pass
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+</body>
+</html>
